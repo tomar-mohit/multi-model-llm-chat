@@ -1,0 +1,770 @@
+/* --- CSS Variables for Theming and Maintainability (I1) --- */
+:root {
+    /* Colors */
+    --primary-color: #3498db;
+    /* Blue */
+    --primary-hover-color: #2980b9;
+    --secondary-color: #2c3e50;
+    /* Dark Blue/Charcoal */
+    --accent-color: #28a745;
+    /* Green (for TDFF) */
+    --accent-hover-color: #218838;
+
+    --background-light: #f4f7f6;
+    --background-white: #ffffff;
+    --background-gray-light: #f8f8f8;
+    --background-light-border: #e0e0e0;
+    --text-color: #333;
+    --text-color-light: #444;
+    --text-color-muted: #888;
+    --text-color-disabled: #999;
+    --border-color-default: #ccc;
+
+    /* Focus States */
+    --focus-border-color: var(--primary-color);
+    --focus-shadow: rgba(52, 152, 219, 0.2);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.05);
+    /* For job-row hover */
+    --shadow-button-hover: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+    /* Spacing System */
+    --spacing-xs: 3px;
+    --spacing-sm: 5px;
+    --spacing-md: 10px;
+    --spacing-lg: 15px;
+    --spacing-xl: 20px;
+    --spacing-xxl: 25px;
+
+    /* Border Radii */
+    --border-radius-sm: 4px;
+    --border-radius-md: 6px;
+    --border-radius-lg: 8px;
+
+    /* Font Sizes (base for easier scaling with 'em' or 'rem' if desired later) */
+    --font-size-xs: 0.8em;
+    --font-size-sm: 0.95em;
+    --font-size-base: 1em;
+    --font-size-md: 1.1em;
+    --font-size-lg: 1.2em;
+    --font-size-xl: 1.3em;
+    --font-size-xxl: 1.8em;
+    /* For H2 */
+    --font-size-header-h3: 2.5em;
+    /* For main header H3 */
+}
+
+/* Basic Resets & Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--secondary-color);
+    color: var(--background-white);
+    padding: var(--spacing-md) var(--spacing-xl);
+    /* I11: Add padding */
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+h3 {
+    /* P3, I4: Adjusted h3 as primary header title */
+    margin: 0;
+    font-size: var(--font-size-header-h3);
+    padding: var(--spacing-lg) 0;
+}
+
+main {
+    flex-grow: 1;
+    padding: var(--spacing-xs);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    max-width: 100%;
+}
+
+h2 {
+    /* I4: Styling for h2 */
+    font-size: var(--font-size-xxl);
+    color: var(--secondary-color);
+    margin: var(--spacing-xl) 0 var(--spacing-md);
+    padding-left: var(--spacing-xs);
+}
+
+/* I3: Styling for #responseOutput (pre tag) */
+#responseOutput {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: var(--font-size-sm);
+    color: var(--text-color);
+    overflow-x: auto;
+    max-height: 300px;
+}
+
+/* Prompt Section */
+.prompt-section {
+    background-color: var(--background-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--background-light-border);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    /* I6: Cursor for labels */
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
+/* P9: sr-only class for accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+#main-input-box {
+    width: 100%;
+    padding: var(--spacing-lg);
+    border: 1px solid var(--border-color-default);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-base);
+    resize: vertical;
+    min-height: 120px;
+    box-sizing: border-box;
+}
+
+#main-input-box:focus-visible {
+    /* P4: Focus state */
+    outline: 2px solid var(--focus-border-color);
+    outline-offset: 2px;
+    border-color: var(--focus-border-color);
+    box-shadow: 0 0 0 3px var(--focus-shadow);
+}
+
+#main-input-box:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* I2: Base button class for common styles */
+.button,
+#submit-btn,
+#tdff-btn,
+#uploadButton,
+#uploadButtonOI,
+.llm-header .fetch-btn {
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-md);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+    padding: var(--spacing-md) var(--spacing-xxl);
+    /* Default padding for most buttons */
+}
+
+/* P4: General focus visible for buttons */
+.button:focus-visible,
+#submit-btn:focus-visible,
+#tdff-btn:focus-visible,
+#uploadButton:focus-visible,
+#uploadButtonOI:focus-visible,
+.llm-header .fetch-btn:focus-visible {
+    outline: 2px solid var(--focus-border-color);
+    outline-offset: 2px;
+}
+
+.button:focus:not(:focus-visible),
+#submit-btn:focus:not(:focus-visible),
+#tdff-btn:focus:not(:focus-visible),
+#uploadButton:focus:not(:focus-visible),
+#uploadButtonOI:focus:not(:focus-visible),
+.llm-header .fetch-btn:focus:not(:focus-visible) {
+    outline: none;
+}
+
+#submit-btn {
+    background-color: var(--primary-color);
+    color: var(--background-white);
+    font-size: var(--font-size-md);
+    align-self: flex-end;
+}
+
+#submit-btn:hover:not(:disabled) {
+    background-color: var(--primary-hover-color);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-button-hover);
+}
+
+#submit-btn:disabled {
+    background-color: #aeb6bf;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* LLM Responses Section */
+.llm-responses-section {
+    flex-grow: 1;
+}
+
+.llm-columns-container {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.llm-column {
+    flex: 1;
+    min-width: 300px;
+    background-color: var(--background-white);
+    border: 1px solid var(--background-light-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+}
+
+.llm-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.llm-header label {
+    /* I6: Cursor for labels, I1: flex-grow */
+    font-size: var(--font-size-xl);
+    font-weight: bold;
+    color: var(--secondary-color);
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+.llm-checkbox {
+    transform: scale(1.4);
+    accent-color: var(--primary-color);
+}
+
+.llm-checkbox:focus-visible {
+    /* P4: Focus state */
+    outline: 2px solid var(--focus-border-color);
+    outline-offset: 3px;
+}
+
+.llm-checkbox:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.llm-output-box {
+    background-color: #f9f9f9;
+    border: 1px solid #dcdcdc;
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    min-height: 250px;
+    max-height: 500px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: var(--font-size-sm);
+    color: var(--text-color-light);
+    flex-grow: 1;
+}
+
+.llm-output-box .placeholder {
+    color: var(--text-color-muted);
+    font-style: italic;
+}
+
+/* P1: Status Toasts - Using visibility for transitions */
+.status-toast {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--border-radius-sm);
+    font-weight: bold;
+    margin-bottom: var(--spacing-lg);
+    visibility: hidden;
+    /* Start hidden for transitions */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    /* Transition both */
+    text-align: center;
+}
+
+.status-toast.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Specific colors for different toast types */
+.status-toast.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-toast.failure {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.status-toast.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.status-toast.general {
+    /* P5: General toast margin */
+    background-color: #cce5ff;
+    color: #004085;
+    border: 1px solid #b8daff;
+    margin-top: var(--spacing-xl);
+}
+
+/* P9: Utility class for completely hiding elements */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .llm-columns-container {
+        flex-direction: column;
+    }
+
+    .llm-column {
+        min-width: unset;
+    }
+
+    main {
+        padding: var(--spacing-lg);
+        margin: var(--spacing-lg) auto;
+    }
+
+    header {
+        padding: var(--spacing-lg) var(--spacing-xl);
+    }
+
+    header h3 {
+        font-size: var(--font-size-xxl);
+    }
+}
+
+@media (max-width: 576px) {
+    main {
+        padding: var(--spacing-md);
+        margin: var(--spacing-md) auto;
+    }
+
+    .prompt-section,
+    .llm-column {
+        padding: var(--spacing-lg);
+    }
+
+    .input-group label {
+        font-size: var(--font-size-base);
+    }
+
+    #submit-btn {
+        padding: var(--spacing-md) var(--spacing-xl);
+        font-size: var(--font-size-base);
+    }
+
+    .llm-header label {
+        font-size: var(--font-size-md);
+    }
+
+    .llm-output-box {
+        min-height: 180px;
+    }
+
+    /* I8: Responsive behavior for fetch buttons in llm-header */
+    .llm-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .llm-header label {
+        margin-bottom: var(--spacing-md);
+    }
+
+    .llm-header .fetch-btn {
+        width: 100%;
+        margin-left: 0;
+        margin-top: var(--spacing-sm);
+        text-align: center;
+    }
+
+    /* I7: Responsive for upload buttons */
+    .upload-buttons-container {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    #uploadButton,
+    #uploadButtonOI {
+        width: 100%;
+        /* Make full width when stacked */
+    }
+}
+
+/* New Batch Options Styling */
+.batch-options-group {
+    background-color: var(--background-gray-light);
+    border: 1px solid var(--background-light-border);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    display: flex;
+    /* Make it a flex container to manage its children */
+    flex-direction: column;
+    /* Stack children vertically */
+    gap: var(--spacing-md);
+    /* Space between children within the group */
+}
+
+/* I5: Fieldset styling */
+.batch-checkboxes {
+    /* This targets the fieldset */
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.batch-checkboxes legend {
+    font-size: var(--font-size-base);
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-md);
+    padding: 0 var(--spacing-sm);
+}
+
+.batch-checkboxes>div {
+    /* I5: The inner div wrapping the labels */
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin-bottom: 0;
+    /* Gap on parent handles spacing */
+}
+
+.batch-checkboxes label {
+    /* I6: Cursor for labels */
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    font-size: var(--font-size-sm);
+    color: var(--text-color-light);
+    cursor: pointer;
+}
+
+.batch-checkboxes input[type="checkbox"] {
+    transform: scale(1.1);
+    margin-right: var(--spacing-sm);
+    accent-color: var(--primary-color);
+}
+
+.batch-checkboxes input[type="checkbox"]:focus-visible {
+    /* P4: Focus state */
+    outline: 2px solid var(--focus-border-color);
+    outline-offset: 3px;
+}
+
+.batch-checkboxes input[type="checkbox"]:focus:not(:focus-visible) {
+    outline: none;
+}
+
+#batch-file-input {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color-default);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+    box-sizing: border-box;
+    margin-top: 0;
+    /* Parent gap handles spacing */
+}
+
+#batch-file-input:focus-visible {
+    /* P4: Focus state */
+    outline: 2px solid var(--focus-border-color);
+    outline-offset: 2px;
+    border-color: var(--focus-border-color);
+    box-shadow: 0 0 0 3px var(--focus-shadow);
+}
+
+#batch-file-input:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Specific styling for disabled elements */
+.llm-column .llm-header input[type="checkbox"]:disabled+label {
+    color: var(--text-color-disabled);
+    cursor: not-allowed;
+}
+
+.llm-column .llm-output-box.disabled {
+    background-color: #f2f2f2;
+    border-color: #e0e0e0;
+    color: var(--text-color-disabled);
+    pointer-events: none;
+}
+
+/* I10: Ensure placeholder text is also dimmed when output box is disabled */
+.llm-column .llm-output-box.disabled .placeholder {
+    color: #bbb;
+}
+
+/* Toast for batch mode validation */
+#batch-mode-toast {
+    margin-top: 0;
+    /* Parent gap handles spacing */
+    margin-bottom: 0;
+    /* No explicit margin-bottom */
+}
+
+/* Styling for TDFF button */
+#tdff-btn {
+    background-color: var(--accent-color);
+    color: var(--background-white);
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: var(--font-size-sm);
+    display: block;
+    width: fit-content;
+    margin-top: 0;
+    /* Parent gap handles spacing */
+}
+
+#tdff-btn:hover:not(:disabled) {
+    background-color: var(--accent-hover-color);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-button-hover);
+}
+
+#tdff-btn:disabled {
+    background-color: #aeb6bf;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* I7: Styling for Upload and Run buttons */
+.upload-buttons-container {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: 0;
+    /* Parent gap handles spacing */
+    flex-wrap: wrap;
+}
+
+#uploadButton,
+#uploadButtonOI {
+    background-color: var(--secondary-color);
+    color: var(--background-white);
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: var(--font-size-sm);
+    flex-grow: 1;
+    margin-top: 0;
+    /* Reset */
+}
+
+#uploadButton:hover:not(:disabled),
+#uploadButtonOI:hover:not(:disabled) {
+    background-color: #3b5368;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-button-hover);
+}
+
+#uploadButton:disabled,
+#uploadButtonOI:disabled {
+    background-color: #aeb6bf;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Styles for Fetch Status/Result buttons */
+.llm-header .fetch-btn {
+    background-color: #6c757d;
+    color: var(--background-white);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-xs);
+    margin-left: var(--spacing-md);
+    flex-shrink: 0;
+}
+
+.llm-header .fetch-btn:hover:not(:disabled) {
+    background-color: #5a6268;
+    transform: translateY(-0.5px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.llm-header .fetch-btn:disabled {
+    background-color: #aeb6bf;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Specific color for status button */
+.llm-header .status-btn {
+    background-color: #17a2b8;
+}
+
+.llm-header .status-btn:hover:not(:disabled) {
+    background-color: #138496;
+}
+
+/* Specific color for result button */
+.llm-header .result-btn {
+    background-color: #007bff;
+}
+
+.llm-header .result-btn:hover:not(:disabled) {
+    background-color: #0069d9;
+}
+
+/* When LLM column is disabled, also disable its fetch buttons visually */
+.llm-column.disabled-llm-column .fetch-btn {
+    background-color: #d8e0e7;
+    color: var(--text-color-disabled);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.job-row {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-xs) var(--spacing-xs);
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.2s ease;
+    margin: 0;
+}
+
+.job-row:hover {
+    background-color: #f9f9f9;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.job-id {
+    flex: 1;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: var(--text-color);
+    padding-right: var(--spacing-lg);
+    word-break: break-all;
+}
+
+.job-status {
+    padding: 6px var(--spacing-lg);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 100px;
+    text-align: center;
+}
+
+.job-status.pending {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.job-status.running {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.job-status.completed {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.job-status.failed {
+    background-color: #f8d7da;
+    /* Using failure toast bg color */
+    color: #721c24;
+    /* Using failure toast text color */
+    border: 1px solid #f5c6cb;
+    /* Using failure toast border color */
+}
+
+/* --- Styling for Clear Area Button (3) --- */
+.llm-header .clear-btn {
+    background-color: #dc3545;
+    /* Danger/red color */
+}
+
+.llm-header .clear-btn:hover:not(:disabled) {
+    background-color: #c82333;
+}
+
+/* Ensure the flex wrap works nicely for 4 buttons on small screens */
+@media (max-width: 576px) {
+
+    .llm-header .fetch-btn,
+    .llm-header .clear-btn {
+        /* Include clear button */
+        width: 100%;
+        margin-left: 0;
+        margin-top: var(--spacing-sm);
+        text-align: center;
+    }
+}
+
+.temperateInput {
+    width: auto;
+    border: 1px solid var(--border-color-default);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-base);
+    margin: 5px 0px 6px 3px;
+    padding: 0 0 0 6px;
+}
+
+.systemPrompt {
+    border: 1px solid var(--border-color-default);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-base);
+}

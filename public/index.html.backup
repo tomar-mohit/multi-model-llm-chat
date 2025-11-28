@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive App Layout</title>
+    <link rel="stylesheet" type="text/css" href="./site.css" />
+</head>
+
+<body>
+    <div id="toastMessage" class="toast-hidden">
+    </div>
+
+    <div class="input-section">
+        <div class="input-container">
+            <textarea class="input-area" id="inputBox" placeholder="Enter your text here..."></textarea>
+            <div style="display: flex; align-items: center; justify-content: flex-end;">
+                <textarea class="input-area" id="quest" readonly
+                    style="height: 40px;margin: 0;padding: 0;padding-left: 5px;"></textarea>
+                <input type="number" max="99" min="1" class="input-area" value="1" style="width: auto;"
+                    id="clearHistoryValue" placeholder="Clear X (pairs)" hidden="hidden" />
+                <button class="submit-btn" style="background-color: rgba(162, 126, 41, 0.88);" hidden="hidden"
+                    id="shift">Shift</button>
+                <button class="submit-btn" style="background-color: gray;" id="clearHistory"
+                    hidden="hidden">Clear</button>
+                <input type="number" max="2" step="0.1" min="0.1" class="input-area" value="1" style="width: auto; margin: 0; padding: 0; height: 100%;" title="temperature"
+                    id="temperatureInput" />
+                <button class="submit-btn" style="background-color: gray;" id="clearAllOutput">CA</button>
+                <button class="submit-btn" style="background-color: rgb(80, 68, 134);" id="toggleSelection">Switch</button>
+                <button class="submit-btn" style="background-color: rgb(80, 68, 134);" hidden="hidden" id="saveGuid">SaveGuid</button>
+                <span class="loading" id="loadingIndicator">Processing...</span>
+                <button class="submit-btn" id="submitBtn">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="output-section">
+
+        <div class="output-column" data-model-id="gemini">
+            <h3 class="column-header">GG</h3>
+            <div>
+                <input type="checkbox" checked="checked" id="trackHisotryGemini" disabled /><label
+                    for="trackHisotryGemini" class="labeledCheck">Chat</label>
+                <input type="checkbox" checked="checked" id="enableGemini" /><label for="enableGemini"
+                    class="labeledCheck">Enabled</label>
+                <!-- <label id="geminiCutOffReason">ER<span id="geminiCutOffReasonValue"></span></label> -->
+                <button type="button" class="clearButton" id="clearGG">Cls</button>
+                <button type="button" class="retryButton" id="retryGG">Rty</button>
+                <input type="number" min="1" max="999" class="clearLastValue" hidden="hidden" id="removeLastGGNum"
+                    value="1">
+                <button type="button" class="removeLastButton" id="removeLastGG" hidden="hidden"
+                    title="Remove Last Message">×</button>
+                <button type="button" class="saveData" id="saveDataGG">Export</button>
+            </div>
+            <textarea class="output-display" id="geminiOut" readonly></textarea>
+            <div class="conversation-history">
+                <h4>Conversation History</h4>
+                <div class="history-list" id="history-gg"></div>
+            </div>
+            <button class="collapsible">Response GG</button>
+            <div class="content">
+                <pre class="api-response">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex
+                    ea commodo consequat.</pre>
+            </div>
+        </div>
+
+
+        <div class="output-column" data-model-id="deepseek">
+            <h3 class="column-header">DS</h3>
+            <div>
+                <input type="checkbox" id="trackHisotryDS" /><label for="trackHisotryDS"
+                    class="labeledCheck">Chat</label>
+                <input type="checkbox" id="enableDS" /><label for="enableDS"
+                    class="labeledCheck">Enabled</label>
+                <!-- <label id="dsCutOffReason">ER<span id="dsCutOffReasonValue"></span></label> -->
+                <button type="button" class="clearButton" id="clearDS">Cls</button>
+                <button type="button" class="retryButton" id="retryDS">Rty</button>
+                <input type="number" min="1" max="999" class="clearLastValue" hidden="hidden" id="removeLastDSNum"
+                    value="1">
+                <button type="button" class="removeLastButton" id="removeLastDS" hidden="hidden"
+                    title="Remove Last Message">×</button>
+                <button type="button" class="saveData" id="saveDataDS">Export</button>
+            </div>
+            <textarea class="output-display" id="deepOut" readonly></textarea>
+            <div class="conversation-history">
+                <h4>Conversation History</h4>
+                <div class="history-list" id="history-ds"></div>
+                <!-- You could even keep this generic, id isn't strictly needed for the JS logic, but good for clarity -->
+            </div>
+            <button class="collapsible">Response DS</button>
+            <div class="content">
+                <pre class="api-response">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex
+                    ea commodo consequat.</pre>
+            </div>
+        </div>
+
+
+        <div class="output-column" data-model-id="gpt">
+            <h3 class="column-header">OI</h3>
+            <div>
+                <input type="checkbox" id="trackHisotrygpt" /><label for="trackHisotrygpt"
+                    class="labeledCheck">Chat</label>
+                <input type="checkbox" id="enableGPT" /><label for="enableGPT"
+                    class="labeledCheck">Enabled</label>
+                <!-- <label id="gptCutOffReason">ER<span id="gptCutOffReasonValue"></span></label> -->
+                <button type="button" class="clearButton" id="clearOI">Cls</button>
+                <button type="button" class="retryButton" id="retryOI">Rty</button>
+                <input type="number" min="1" max="999" class="clearLastValue" hidden="hidden" id="removeLastOINum"
+                    value="1">
+                <button type="button" class="removeLastButton" id="removeLastOI" hidden="hidden"
+                    title="Remove Last Message">×</button>
+                <button type="button" class="saveData" id="saveDataOI">Export</button>
+            </div>
+            <textarea class="output-display" id="gptOut" readonly></textarea>
+            <div class="conversation-history">
+                <h4>Conversation History</h4>
+                <div class="history-list" id="history-oi"></div>
+                <!-- You could even keep this generic, id isn't strictly needed for the JS logic, but good for clarity -->
+            </div>
+            <button class="collapsible">Response OI</button>
+            <div class="content">
+                <pre class="api-response">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex
+                    ea commodo consequat.</pre>
+            </div>
+        </div>
+
+        <div class="output-column" data-model-id="claude">
+            <h3 class="column-header">AC</h3>
+            <div>
+                <input type="checkbox" id="trackHisotryClaude" /><label for="trackHisotryClaude"
+                    class="labeledCheck">Chat</label>
+                <input type="checkbox" id="enableClaude" /><label for="enableClaude"
+                    class="labeledCheck">Enabled</label>
+                <!-- <label id="claudeCutOffReason">ER<span id="claudeCutOffReasonValue"></span></label> -->
+                <button type="button" class="clearButton" id="clearAC">Cls</button>
+                <button type="button" class="retryButton" id="retryAC">Rty</button>
+                <input type="number" min="1" max="999" class="clearLastValue" hidden="hidden" id="removeLastACNum"
+                    value="1">
+                <button type="button" class="removeLastButton" id="removeLastAC" hidden="hidden"
+                    title="Remove Last Message">×</button>
+                <button type="button" class="saveData" id="saveDataAC">Export</button>
+            </div>
+            <textarea class="output-display" id="claudeOut" readonly></textarea>
+            <div class="conversation-history">
+                <h4>Conversation History</h4>
+                <div class="history-list" id="history-ac"></div>
+                <!-- You could even keep this generic, id isn't strictly needed for the JS logic, but good for clarity -->
+            </div>
+            <button class="collapsible">Response AC</button>
+            <div class="content">
+                <pre class="api-response">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex
+                    ea commodo consequat.</pre>
+            </div>
+        </div>
+
+        <div class="output-column" data-model-id="grok">
+            <h3 class="column-header">Gk</h3>
+            <div>
+                <input type="checkbox" id="trackHisotryGrok" /><label for="trackHisotryGrok"
+                    class="labeledCheck">Chat</label>
+                <input type="checkbox" id="enableGrok" /><label for="enableGrok"
+                    class="labeledCheck">Enabled</label>
+                <!-- <label id="grokeCutOffReason">ER<span id="grokdeCutOffReasonValue"></span></label> -->
+                <button type="button" class="clearButton" id="clearAC">Cls</button>
+                <button type="button" class="retryButton" id="retryAC">Rty</button>
+                <input type="number" min="1" max="999" class="clearLastValue" hidden="hidden" id="removeLastACNum"
+                    value="1">
+                <button type="button" class="removeLastButton" id="removeLastAC" hidden="hidden"
+                    title="Remove Last Message">×</button>
+                <button type="button" class="saveData" id="saveDataAC">Export</button>
+            </div>
+            <textarea class="output-display" id="grokeOut" readonly></textarea>
+            <div class="conversation-history">
+                <h4>Conversation History</h4>
+                <div class="history-list" id="history-ac"></div>
+                <!-- You could even keep this generic, id isn't strictly needed for the JS logic, but good for clarity -->
+            </div>
+            <button class="collapsible">Response AC</button>
+            <div class="content">
+                <pre class="api-response">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex
+                    ea commodo consequat.</pre>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- <script type="module" src="./site.js"> -->
+    <script src="./site.js">
+
+    </script>
+</body>
+
+</html>

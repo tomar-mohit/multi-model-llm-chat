@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimodel LLM Portal</title>
+    <link rel="stylesheet" href="bulk.css">
+</head>
+
+<body>
+    <main>
+        <section class="prompt-section">
+            <div class="input-group">
+                <label for="main-input-box" class="sr-only">Main Prompt Input</label>
+                <textarea id="main-input-box" rows="8" placeholder="Enter your prompt here..."></textarea>
+
+                <!-- NEW BATCH OPTIONS -->
+                <div class="batch-options-group">
+                    <fieldset class="batch-checkboxes">
+                        <legend>Batch Submission Options</legend>
+                        <div>
+                            <input type="text" id="systemPrompt" class="systemPrompt" placeholder="System prompt here..."></input>
+                            <input type="number" max="2" step="0.1" min="0.1" class="temperateInput" value="1"
+                                style="width: auto;" id="temperatureInput" title="temperature" />
+                            <label>
+                                <input type="checkbox" id="sbi-checkbox" checked> Submit as Batch Input (Text Area)
+                            </label>
+                            <label>
+                                <input type="checkbox" id="sbi-checkbox-single" checked> Submit as Single Chat Batch
+                            </label>
+                            <label>
+                                <input type="checkbox" id="sbf-checkbox"> Submit as Batch File (Upload)
+                            </label>
+                            <button id="tdff-btn" type="button" class="hidden" disabled>(TDFF)</button>
+                            <button id="submit-btn" type="button" disabled>Submit Prompt</button>
+                        </div>
+                    </fieldset>
+                    <!-- File input, initially hidden -->
+                    <input type="file" id="batch-file-input" accept=".jsonl,.json,.csv,.txt" class="hidden">
+                    <div class="upload-buttons-container">
+                        <button id="uploadButton" type="button">Upload and Run Gemini Batch</button>
+                        <button id="uploadButtonOI" type="button">Upload and Run OpenAI Batch</button>
+                    </div>
+                    <div id="batch-mode-toast" class="status-toast info hidden" role="status" aria-live="polite"
+                        aria-atomic="true"></div>
+                </div>
+                <!-- END NEW BATCH OPTIONS -->
+
+                <div id="overall-status-toast" class="status-toast general" role="status" aria-live="polite"
+                    aria-atomic="true"></div>
+            </div>
+        </section>
+
+        <section class="llm-responses-section">
+            <div class="llm-columns-container">
+
+                <!-- Gemini Column -->
+                <div id="llm-gemini-column" class="llm-column">
+                    <div class="llm-header">
+                        <input type="checkbox" id="gemini-checkbox" class="llm-checkbox" checked>
+                        <label for="gemini-checkbox">Google Gemini</label>
+                        <button id="gemini-fetch-status-btn" type="button" class="fetch-btn status-btn" disabled>Fetch
+                            Status</button>
+                        <button id="gemini-fetch-result-btn" type="button" class="fetch-btn result-btn" disabled>Fetch
+                            Results</button>
+                        <button id="gemini-clear-area-btn" type="button" class="fetch-btn clear-btn" disabled>Clear
+                            Area</button>
+                    </div>
+                    <div id="gemini-status-toast" class="status-toast specific" role="status" aria-live="polite"
+                        aria-atomic="true"></div>
+                    <div id="gemini-output" class="llm-output-box">
+                        <p class="placeholder">Gemini's response will appear here...</p>
+                    </div>
+                    <div id="gemini-usage-container" class="llm-usage">
+                        <pre id="gemini-usage"></pre>
+                    </div>
+                </div>
+
+                <!-- OpenAI Column (ChatGPT) -->
+                <div id="llm-openai-column" class="llm-column">
+                    <div class="llm-header">
+                        <input type="checkbox" id="openai-checkbox" class="llm-checkbox">
+                        <label for="openai-checkbox">OpenAI (ChatGPT)</label>
+                        <button id="openai-fetch-status-btn" type="button" class="fetch-btn status-btn" disabled>Fetch
+                            Status</button>
+                        <button id="openai-fetch-result-btn" type="button" class="fetch-btn result-btn" disabled>Fetch
+                            Results</button>
+                        <button id="openai-clear-area-btn" type="button" class="fetch-btn clear-btn" disabled>Clear
+                            Area</button>
+                    </div>
+                    <div id="openai-status-toast" class="status-toast specific" role="status" aria-live="polite"
+                        aria-atomic="true"></div>
+                    <div id="openai-output" class="llm-output-box">
+                        <p class="placeholder">OpenAI's response will appear here...</p>
+                    </div>
+                    <div id="openai-usage-container" class="llm-usage">
+                        <pre id="openai-usage"></pre>
+                    </div>
+                </div>
+
+                <!-- Anthropic Claude Column -->
+                <div id="llm-claude-column" class="llm-column">
+                    <div class="llm-header">
+                        <input type="checkbox" id="claude-checkbox" class="llm-checkbox" checked>
+                        <label for="claude-checkbox">Anthropic Claude</label>
+                        <button id="claude-fetch-status-btn" type="button" class="fetch-btn status-btn" disabled>Fetch
+                            Status</button>
+                        <button id="claude-fetch-result-btn" type="button" class="fetch-btn result-btn" disabled>Fetch
+                            Results</button>
+                        <button id="claude-clear-area-btn" type="button" class="fetch-btn clear-btn" disabled>Clear
+                            Area</button>
+                    </div>
+                    <div id="claude-status-toast" class="status-toast specific" role="status" aria-live="polite"
+                        aria-atomic="true"></div>
+                    <div id="claude-output" class="llm-output-box">
+                        <p class="placeholder">Claude's response will appear here...</p>
+                    </div>
+                    <div id="claude-usage-container" class="llm-usage">
+                        <pre id="claude-usage"></pre>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script src="bulk.js"></script>
+</body>
+
+</html>
