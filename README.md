@@ -18,10 +18,6 @@
 
 <br>
 
-<p align="center">
-  <img src="[ToDo: Add Gifs]" alt="Multi-Model LLM Chat Demo" width="800"/>
-</p>
-
 ### Why Multi-Model Chat?
 
 > Born from the frustration of endlessly switching browser tabs, this tool was built to create a fluid, powerful, and efficient workflow. It transforms the chaotic process of multi-model testing into a streamlined command center, giving you the control to find the best AI for your task, faster than ever before.
@@ -43,7 +39,11 @@ Responses stream in real-time into clean, parallel columns, allowing for immedia
 
 <!-- GIF to be added: A simple screen recording of you enabling 3 models, typing "Write a poem about a robot learning to code", and showing the three poems streaming in. -->
 <p align="center">
-  <em>[Placeholder for Side-by-Side Comparison GIF]</em>
+  <em>
+    <p align="center">
+      <img src="https://github.com/tomar-mohit/multi-model-llm-chat/blob/main/screenshots/BasicConco.gif" alt="Multi-Model LLM Chat Demo" width="800"/>
+    </p>
+  </em>
 </p>
 
 ### 🧠 Stateful, Per-Model Conversations
@@ -57,7 +57,11 @@ Each model maintains its own independent conversation history. Have a deep, cont
 
 <!-- GIF to be added: Show a long conversation history in the Gemini column. Scroll it. Then, type a new prompt and show that only Gemini's response is a follow-up, while the others give fresh answers. -->
 <p align="center">
-  <em>[Placeholder for Per-Model Conversation GIF]</em>
+  <em>
+    <p align="center">
+      <img src="https://github.com/tomar-mohit/multi-model-llm-chat/blob/main/screenshots/StatefulConvo.gif" alt="Multi-Model LLM Chat Demo" width="800"/>
+    </p>
+  </em>
 </p>
 
 ### 🛠️ Total Conversation Control
@@ -70,7 +74,11 @@ This UI gives you the power to surgically edit and reshape the conversation hist
 
 <!-- GIF to be added: A two-part GIF. First, show clicking the 'x' button on a message in the history list, and it disappears. Second, show clicking one message, then another, and watch it re-order in the list. -->
 <p align="center">
-  <em>[Placeholder for Conversation Control GIF]</em>
+  <em>
+    <p align="center">
+      <img src="https://github.com/tomar-mohit/multi-model-llm-chat/blob/main/screenshots/DeleteAndShift.gif" alt="Multi-Model LLM Chat Demo" width="800"/>
+    </p>
+  </em>
 </p>
 
 ### 🎯 Advanced Prompting with Model-Specific Directives
@@ -84,7 +92,11 @@ Embed targeted instructions for specific models directly within your query. Tell
 
 <!-- GIF to be added: Show yourself typing the exact example prompt from above. Hit submit and watch GPT produce Shakespearean text while Claude produces a simple story. This will blow people away. -->
 <p align="center">
-  <em>[Placeholder for Model-Specific Directives GIF]</em>
+  <em>
+    <p align="center">
+      <img src="https://github.com/tomar-mohit/multi-model-llm-chat/blob/main/screenshots/ModelSpecificDirective.gif" alt="Multi-Model LLM Chat Demo" width="800"/>
+    </p>
+  </em>
 </p>
 
 
@@ -104,7 +116,20 @@ The `/bulk` page is designed for serious, high-volume prompt testing, allowing y
 **GIF to be added:** A GIF showing the /bulk page workflow.
 -->
 <p align="center">
-  <em>[Placeholder for Bulk Processing GIF]</em>
+  <em>
+    <p align="center">
+      <img src="https://github.com/tomar-mohit/multi-model-llm-chat/blob/main/screenshots/BulkChat.gif" alt="Multi-Model LLM Chat Demo" width="800"/>
+    </p>
+    <p align="center">
+      <img src="https://github.com/tomar-mohit/multi-model-llm-chat/blob/main/screenshots/BulkChat2.gif" alt="Multi-Model LLM Chat Demo" width="800"/>
+    </p>
+    <p align="center">
+      <img src="https://github.com/tomar-mohit/multi-model-llm-chat/blob/main/screenshots/BulkFileProcessingGemini.gif" alt="Multi-Model LLM Chat Demo" width="800"/>
+    </p>
+    <p align="center">
+      <img src="https://github.com/tomar-mohit/multi-model-llm-chat/blob/main/screenshots/BulkFileProcessingGPT.gif" alt="Multi-Model LLM Chat Demo" width="800"/>
+    </p>
+  </em>
 </p>
 
 ---
