@@ -183,8 +183,8 @@ Launch your own local instance in under 5 minutes.
 
 ## 🛠️ Tech Stack
 
-*   **Frontend:** Plain HTML, CSS, and vanilla JavaScript (ES6+)
-*   **Backend:** Node.js with Express
+*   **Frontend:** Plain HTML, CSS, and vanilla ![JavaScript (ES6+)](https://img.shields.io/badge/JavaScript-ES6+-yellow)
+*   **Backend:** ![Node.js](https://img.shields.io/badge/Node.js-22.x-green) with ![Express.js](https://img.shields.io/badge/Express.js-5.x-blue)
 *   **Real-time:** Server-Sent Events (SSE) for streaming chat responses
 
 ---
@@ -203,4 +203,10 @@ Please read `CONTRIBUTING.md` for our code of conduct and more details.
 
 ## 📄 License
 
-This project is licensed under the AGPL(v3) License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the AGPL(v3) ![License](https://img.shields.io/badge/License-AGPL_v3-red). See the [LICENSE](LICENSE) file for details.
+
+
+## <img width="32" height="32" alt="demo" src="https://github.com/user-attachments/assets/90908a7b-edaa-4631-8455-8f20c2cb8fac" /> Live Demo
+[🚀 View the Live Demo (Render)](https://multi-model-llm-chat.onrender.com/)
+<br>
+[🚀 View the Live Demo (Railway)](https://multi-model-llm-chat-production.up.railway.app/)
