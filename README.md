@@ -199,8 +199,6 @@ We love contributions! Whether it's a bug fix, a new feature, or documentation i
 4.  Push to the branch (`git push origin feature/AmazingFeature`).
 5.  Open a Pull Request.
 
-Please read `CONTRIBUTING.md` for our code of conduct and more details.
-
 ## 📄 License
 
 This project is licensed under the AGPL(v3) ![License](https://img.shields.io/badge/License-AGPL_v3-red). See the [LICENSE](LICENSE) file for details.
