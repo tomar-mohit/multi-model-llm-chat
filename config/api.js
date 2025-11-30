@@ -51,7 +51,9 @@ const MODEL_CONFIGS = {
     }),
     formatHeaders: () => ({ "Content-Type": "application/json" }),
     parseResponse: (data) => ({
-      content: data.candidates?.[0]?.content?.parts?.[0]?.text,
+      content: (data.candidates?.[0]?.content?.parts ?? [])
+        .map(part => part.text)
+        .join(''),
       finishReason: data.candidates?.[0]?.finishReason,
       totalTokens: undefined,
     }),

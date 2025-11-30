@@ -255,7 +255,9 @@ function parseGeminiResponse(data) {
     if (data && data.length) {
         data.forEach((v) => {
             const key = v?.metadata?.key;
-            const text = v?.response?.candidates?.[0]?.content?.parts?.[0]?.text;
+            const text = (v?.response?.candidates?.[0]?.content?.parts ?? [])
+                .map(part => part.text)
+                .join('');
             result += `Prompt Key: ${key || 'N/A'}\nResponse: ${text || 'No response content'}\n---\n`;
         });
     } else {
