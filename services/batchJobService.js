@@ -443,7 +443,9 @@ function parseGeminiInlineResponses(lroInfo, originalPrompts, isSingleBatchChat)
     let responseContent = '[No response content]';
     let errorMessage = item.error?.message;
     if (item.response?.candidates?.[0]?.content?.parts?.[0]?.text) {
-      responseContent = item.response.candidates[0].content.parts[0].text; // add the 0 and 1 and all upto where exists
+      responseContent = (item.response?.candidates?.[0]?.content?.parts ?? [])
+        .map(part => part.text)
+        .join('')
     } else if (item.response) {
       responseContent = JSON.stringify(item.response);
     }
