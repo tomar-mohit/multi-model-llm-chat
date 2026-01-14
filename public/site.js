@@ -1155,11 +1155,33 @@ async function handleSystemPromptTick(e) {
 }
 
 // --- Initialization ---
+async function populateAllModels(params) {
+    try {
+        const response = await fetch('/api/populateAllModels', { // NEW ENDPOINT
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        if (response.ok) {
+            const data = response.json();
+        } else {
+            console.log('not okay', response);
+        }
+    }
+    catch(e) {
+        console.log('could not call', e);
+    }
+}
 
 /**
  * Initializes the application by setting up DOM elements, caches, and event listeners.
  */
-function initializeApp() {
+async function initializeApp() {
+
+    // get all models
+    await populateAllModels();
+
+
     // --- Cache DOM Elements ---
     inputArea = document.getElementById('inputBox'); // Corrected from class to ID
     submitBtn = document.getElementById('submitBtn');
